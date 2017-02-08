@@ -1,0 +1,13 @@
+{% macro tableMulti(largeur, mini, maxi) %}
+    <table>
+        {% for i in mini..maxi %}
+            <tr>
+                {% for j in 1..largeur %}
+                    <td>
+                        {{ i * j }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endmacro %}

@@ -1,0 +1,9 @@
+<html>
+    <body>
+        {% embed 'AppBundle:Tag:embedArmes.html.twig' with { products: produits}%}
+            {% block titre %}
+                Armes prestigieuses
+            {% endblock %}
+        {% endembed %}
+    </body>
+</html>

@@ -1,0 +1,10 @@
+<h1>
+{% block titre %}
+{% endblock %}
+</h1>
+{% block produits %}
+    {% for prod in products %}
+        {% include 'AppBundle:Tag:includeArme.html.twig' with {produit: prod} %}
+        <br>
+    {% endfor %}
+{% endblock %}
