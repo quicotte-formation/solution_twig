@@ -184,7 +184,7 @@ class Client implements \Symfony\Component\Security\Core\User\UserInterface, \Se
         return serialize( array($this->id, $this->login, $this->mdp, $this->role) );
     }
 
-    public function unserialize($serialized):void {
+    public function unserialize($serialized) {
         
         list( $this->id, $this->login, $this->mdp ) = unserialize($serialized);
     }

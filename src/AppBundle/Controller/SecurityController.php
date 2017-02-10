@@ -13,9 +13,14 @@ class SecurityController extends Controller
      */
     public function secuByCodeAction(){
         $this->denyAccessUnlessGranted( "ROLE_SIMPLE" );
+        
+        return $this->render('AppBundle:Security:security_by_annotation.html.twig', array(
+            // ...
+        ));
     }
     
     /**
+     * @Security("has_role('ROLE_SIMPLE')")
      * @Route("/securityByAnnotation")
      * 
      */
