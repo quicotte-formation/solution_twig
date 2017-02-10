@@ -20,7 +20,7 @@ class SecurityController extends Controller
     }
     
     /**
-     * @Security("has_role('ROLE_SIMPLE')")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/securityByAnnotation")
      * 
      */
