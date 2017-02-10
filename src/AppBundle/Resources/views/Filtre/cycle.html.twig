@@ -1,0 +1,10 @@
+<table>
+    {% set couleurs = ["white", "blue", "green"] %}
+    {% for produit in produits %}
+        <tr style="background-color: 
+            {{ cycle(couleurs, loop.index) }}">
+            <td>{{ produit.titre }}</td>
+            <td>{{ produit.prix }}</td>
+        </tr>
+    {% endfor %}
+</table>

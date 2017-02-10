@@ -167,7 +167,7 @@ class Client implements \Symfony\Component\Security\Core\User\UserInterface, \Se
 
     public function getRoles() {
         
-        return array( $this->role );
+        return array( "ROLE_SIMPLE" );
     }
 
     public function getSalt() {
@@ -184,7 +184,7 @@ class Client implements \Symfony\Component\Security\Core\User\UserInterface, \Se
         return serialize( array($this->id, $this->login, $this->mdp, $this->role) );
     }
 
-    public function unserialize($serialized) {
+    public function unserialize($serialized):void {
         
         list( $this->id, $this->login, $this->mdp ) = unserialize($serialized);
     }

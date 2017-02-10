@@ -1,5 +1,9 @@
 {{ 'now' | date_modify('+10min') | date('d/m/y G:i:s') }}
 
+<br>
+
+{{ 'Bonjour, mon nom est %nom% %prenom%' | replace({'%nom%': 'Lou', '%prenom%': 'Férigno', 'o': '*'})  }}
+
 
 
 

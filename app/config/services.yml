@@ -4,6 +4,17 @@ parameters:
 #    parameter_name: value
 
 services:
+    
+    mail:
+        class: AppBundle\Service\MailService
+        arguments: ["@mailer"]
+    
+    client:
+        class: AppBundle\Service\ClientService
+        arguments: ["@doctrine.orm.entity_manager", "@logger", "@mail"]
+
+
+
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
