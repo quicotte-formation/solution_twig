@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        
+        function clicBouton(){
+            
+            $("#cible").load( "{{ path("ajax_lister_produits") }}" );
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+    <button onclick="clicBouton()">Appel avec $('#cible').load</button>
+    <div id="cible">***</div>
+{% endblock %}

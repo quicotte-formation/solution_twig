@@ -1,0 +1,6 @@
+<h1>Liste produits</h1>
+
+{% for produit in produits %}
+    {{ produit.titre  }} {{ produit.prix |number_format(2,'.',' ') }} €
+    <br>
+{% endfor %}

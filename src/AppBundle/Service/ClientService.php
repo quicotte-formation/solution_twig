@@ -26,13 +26,19 @@ class ClientService {
      */
     private $logger;
     
-    function __construct(\Doctrine\ORM\EntityManagerInterface $em, \Psr\Log\LoggerInterface $logger) {
+    /**
+     *
+     * @var MailService
+     */
+    private $mail;
+    
+    function __construct(\Doctrine\ORM\EntityManagerInterface $em, \Psr\Log\LoggerInterface $logger, MailService $mail) {
         $this->em = $em;
         $this->logger = $logger;
-        $this->mailer = $mailer;
+        $this->mail = $mail;
     }
 
-    
+        
     /**
      * 
      * @param \AppBundle\Entity\Client $client
@@ -40,7 +46,8 @@ class ClientService {
     public function inscription($client){
 
         $this->em->persist($client);
-        
+        $this->mail->envoyer("test@gmail.com", "BLABLA", "COUCOU");
         $this->logger->info("coucou");
+        
     }
 }
