@@ -11,6 +11,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AjaxController extends Controller
 {
     /**
+     * @Route("/lister_json", name="ajax_lister_json")
+     */
+    public function listerJSONAction(){
+        
+        // Liste produits
+        $produits = $this->getDoctrine()->getRepository("AppBundle:Produit")->findAll();
+        
+        $res=array();
+        foreach ($produits as $prod){
+            $dto = new \AppBundle\DTO\ProduitDTO();
+            $dto->prix=$prod->getPrix();
+            $dto->titre=$prod->getTitre();
+            $res[] = $dto;
+        }
+        
+        // Renvoie du JSON
+        return $this->json( $res );
+    }
+    
+    /**
      * @Route("/ajouter_prod", name="ajax_ajouter_prod")
      */
     public function ajouterProdAction(\Symfony\Component\HttpFoundation\Request $request){

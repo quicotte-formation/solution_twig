@@ -3,31 +3,47 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        
-        function callbackAjouterPro(reponse){
-            
+
+        function callbackListerJSON(tabProduits) {
+
+            var html = "";
+            for (i = 0; i < tabProduits.length; i++) {
+                html += tabProduits[i].titre + " " + tabProduits[i].prix + "<br>";
+            }
+            $("#cible").html( html );
+
+        }
+
+        function clicBoutonListerJSON() {
+
+            $.getJSON("{{ path("ajax_lister_json") }}", callbackListerJSON);
+        }
+
+        function callbackAjouterPro(reponse) {
+
             clicBouton();
         }
-        
-        function ajouterProd(){
-            
+
+        function ajouterProd() {
+
             $.post("{{ path('ajax_ajouter_prod') }}", $('form').serialize(), callbackAjouterPro);
         }
-        
-        function callbackSup(reponseDuServeur){
-            
+
+        function callbackSup(reponseDuServeur) {
+
             //$("#cible").html( reponseDuServeur );
             clicBouton();
         }
-        
-        function clicBouton(){
-            
-            $("#cible").load( "{{ path("ajax_lister_produits") }}" );
+
+        function clicBouton() {
+
+            $("#cible").load("{{ path("ajax_lister_produits") }}");
         }
     </script>
 {% endblock %}
 
 {% block body %}
+    <button onclick="clicBoutonListerJSON();">$.getJSON</button>
     <button onclick="clicBouton()">Appel avec $('#cible').load</button>
     <div id="cible">***</div>
     <br>
