@@ -4,6 +4,12 @@
     {{ parent() }}
     <script>
         
+        function callbackSup(reponseDuServeur){
+            
+            //$("#cible").html( reponseDuServeur );
+            clicBouton();
+        }
+        
         function clicBouton(){
             
             $("#cible").load( "{{ path("ajax_lister_produits") }}" );

@@ -2,5 +2,6 @@
 
 {% for produit in produits %}
     {{ produit.titre  }} {{ produit.prix |number_format(2,'.',' ') }} €
+    <button onClick='$.get("{{ path("ajax_sup_prod", {id: produit.id}) }}", callbackSup);'>Supprimer</button>
     <br>
 {% endfor %}

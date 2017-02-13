@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Trad:tradSimple{% endblock %}
+
+{% block body %}
+    <h1>
+        {% trans %}Bienvenue{% endtrans %}
+        <br>
+        
+{#      ! prenom et nom sont des variables#}
+        {% trans %}Bienvenue %prenom% %nom%{% endtrans %}
+</h1>
+{% endblock %}
