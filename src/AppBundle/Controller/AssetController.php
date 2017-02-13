@@ -15,8 +15,14 @@ class AssetController extends Controller
      */
     public function testAction()
     {
+        $form = $this->createForm(\AppBundle\Form\ProduitType::class);
+        $form->add( "Submit", \Symfony\Component\Form\Extension\Core\Type\ButtonType::class, array("attr"=>array(
+            "onclick"=>"ajouterProd();"
+        )) );
+        
         return $this->render('AppBundle:Asset:test.html.twig', array(
-            // ...
+            
+            "monForm"=>$form->createView()
         ));
     }
 

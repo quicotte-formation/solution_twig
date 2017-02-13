@@ -11,6 +11,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AjaxController extends Controller
 {
     /**
+     * @Route("/ajouter_prod", name="ajax_ajouter_prod")
+     */
+    public function ajouterProdAction(\Symfony\Component\HttpFoundation\Request $request){
+        
+        $dto = new \AppBundle\Entity\Produit();
+        $form = $this->createForm(\AppBundle\Form\ProduitType::class, $dto);
+        $form->handleRequest($request);
+        
+        // Mon produit est initialisé
+        $this->getDoctrine()->getManager()->persist( $dto );
+        $this->getDoctrine()->getManager()->flush();
+        
+        
+        // Redirection
+        return $this->redirectToRoute("ajax_lister_produits");
+    }
+    
+    /**
      * @Route("/sup_prod/{id}", name="ajax_sup_prod")
      */
     public function supProdAction($id){

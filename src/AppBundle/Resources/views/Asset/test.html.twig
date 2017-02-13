@@ -4,6 +4,16 @@
     {{ parent() }}
     <script>
         
+        function callbackAjouterPro(reponse){
+            
+            clicBouton();
+        }
+        
+        function ajouterProd(){
+            
+            $.post("{{ path('ajax_ajouter_prod') }}", $('form').serialize(), callbackAjouterPro);
+        }
+        
         function callbackSup(reponseDuServeur){
             
             //$("#cible").html( reponseDuServeur );
@@ -20,4 +30,7 @@
 {% block body %}
     <button onclick="clicBouton()">Appel avec $('#cible').load</button>
     <div id="cible">***</div>
+    <br>
+    Ajout<br>
+    {{ form(monForm) }}
 {% endblock %}
