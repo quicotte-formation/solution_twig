@@ -6,6 +6,21 @@ parameters:
 
 services:
     
+    client_service:
+        class: AppBundle\Service\ClientService  
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     mail:
         class: AppBundle\Service\MailService
         arguments: ["@mailer", "@logger", "%mail.compte_emetteur%"]

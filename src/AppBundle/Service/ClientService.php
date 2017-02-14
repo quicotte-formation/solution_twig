@@ -16,9 +16,24 @@ namespace AppBundle\Service;
 class ClientService {
 
     /**
+     *
      * @var \Doctrine\ORM\EntityManagerInterface
      */
     private $em;
+    
+    
+    function __construct(\Doctrine\ORM\EntityManagerInterface $em) {
+        $this->em = $em;
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
     
     /**
      *
@@ -32,11 +47,11 @@ class ClientService {
      */
     private $mail;
     
-    function __construct(\Doctrine\ORM\EntityManagerInterface $em, \Psr\Log\LoggerInterface $logger, MailService $mail) {
-        $this->em = $em;
-        $this->logger = $logger;
-        $this->mail = $mail;
-    }
+//    function __construct(\Doctrine\ORM\EntityManagerInterface $em, \Psr\Log\LoggerInterface $logger, MailService $mail) {
+//        $this->em = $em;
+//        $this->logger = $logger;
+//        $this->mail = $mail;
+//    }
 
         
     /**
@@ -49,5 +64,35 @@ class ClientService {
         $this->mail->envoyer("test@gmail.com", "BLABLA", "COUCOU");
         $this->logger->info("coucou");
         
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public function inscrire(\AppBundle\Entity\Client $client){
+        
+        // Persiste client en DB
+        $client->setRole("ROLE_SIMPLE");
+        $this->em->persist( $client );
+        $this->em->flush();
+        
+        // Envoir un mail de confirmation
+        
+        // Aujoute ds le journal des logs qu'un nouveau cli s'est inscrit
     }
 }
