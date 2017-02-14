@@ -6,9 +6,13 @@ parameters:
 
 services:
     
+    mail_service:
+        class: AppBundle\Service\MailServiceBidon
+        arguments: ["@mailer"]
+    
     client_service:
-        class: AppBundle\Service\ClientService  
-        arguments: ["@doctrine.orm.entity_manager"]
+        class: AppBundle\Service\ClientService
+        arguments: ["@doctrine.orm.entity_manager", "@mail_service"]
 
     
     

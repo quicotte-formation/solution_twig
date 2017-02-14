@@ -12,6 +12,8 @@ class ServiceController extends Controller
      */
     public function inscriptionAction(\Symfony\Component\HttpFoundation\Request $request){
         
+        $this->get("logger")->debug("coucou");
+        
         $client = new \AppBundle\Entity\Client();
         $form = $this->createForm( \AppBundle\Form\ClientType::class, $client );
         $form->add("submit", \Symfony\Component\Form\Extension\Core\Type\SubmitType::class);

@@ -13,7 +13,7 @@ namespace AppBundle\Service;
  *
  * @author tom
  */
-class ClientService {
+class ClientService implements IClientService {
 
     /**
      *
@@ -21,69 +21,18 @@ class ClientService {
      */
     private $em;
     
-    
-    function __construct(\Doctrine\ORM\EntityManagerInterface $em) {
+    /**
+     *
+     * @var IMailService
+     */
+    private $mailService;
+
+    function __construct(\Doctrine\ORM\EntityManagerInterface $em, IMailService $mailService) {
         $this->em = $em;
+        $this->mailService = $mailService;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-     *
-     * @var \Psr\Log\LoggerInterface 
-     */
-    private $logger;
-    
-    /**
-     *
-     * @var MailService
-     */
-    private $mail;
-    
-//    function __construct(\Doctrine\ORM\EntityManagerInterface $em, \Psr\Log\LoggerInterface $logger, MailService $mail) {
-//        $this->em = $em;
-//        $this->logger = $logger;
-//        $this->mail = $mail;
-//    }
-
         
-    /**
-     * 
-     * @param \AppBundle\Entity\Client $client
-     */
-    public function inscription($client){
-
-        $this->em->persist($client);
-        $this->mail->envoyer("test@gmail.com", "BLABLA", "COUCOU");
-        $this->logger->info("coucou");
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public function inscrire(\AppBundle\Entity\Client $client){
         
         // Persiste client en DB
@@ -92,6 +41,7 @@ class ClientService {
         $this->em->flush();
         
         // Envoir un mail de confirmation
+        $this->mailService->envoyer("blaba@gmail.com", "Validez votre inscription", "blabla");
         
         // Aujoute ds le journal des logs qu'un nouveau cli s'est inscrit
     }

@@ -8,19 +8,21 @@
 
 namespace AppBundle\Service;
 
+use \Exception;
+
 /**
  * Description of MailService
  *
  * @author tom
  */
-class MailService {
+class MailService implements IMailService{
 
     /**
      *
      * @var \Swift_Mailer
      */
     private $mailer;
-
+    
     /**
      *
      * @var \Psr\Log\LoggerInterface 
@@ -33,15 +35,21 @@ class MailService {
      */
     private $compteEmetteur;
 
-    function __construct(\Swift_Mailer $mailer, \Psr\Log\LoggerInterface $logger, $compteEmetteur) {
+    function __construct(\Swift_Mailer $mailer) {
         $this->mailer = $mailer;
-        $this->logger = $logger;
-        $this->compteEmetteur = $compteEmetteur;
     }
 
-    function envoyer($to, $subject, $body) {
+    
+    
+//    function __construct(\Swift_Mailer $mailer, \Psr\Log\LoggerInterface $logger, $compteEmetteur) {
+//        $this->mailer = $mailer;
+//        $this->logger = $logger;
+//        $this->compteEmetteur = $compteEmetteur;
+//    }
 
-        $this->logger->info("Message envoyé depuis: " . $this->compteEmetteur);
+    public function envoyer($to, $subject, $body) {
+
+//        $this->logger->info("Message envoyé depuis: " . $this->compteEmetteur);
 
         $msg = \Swift_Message::newInstance();
         $msg->setTo($to);
@@ -49,6 +57,7 @@ class MailService {
         $msg->setBody($body);
         $msg->setFrom("quicotte@gmail.com");
         $this->mailer->send($msg);
+        throw new Exception("MADE IN FLANDRES ( BELGES ! )");
     }
 
 }
